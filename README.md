@@ -157,7 +157,7 @@ This will explain steps to create line plot that shows the total weekly of the f
 ### Plottting the line chart using Object Oriented interface method.
 
             fig,ax=plt.subplots(figsize=(12, 5))
-            resampled_df.plot(kind='line',ax=ax, linewidth=2)
+            resampled_df.plot(kind='line',ax=ax, linewidth=1)
             fig.subplots_adjust(right=3)
             ax.set_title('Total Fares by City Type',fontsize=16)
             ax.set_ylabel('Fare($USD)',fontsize=14)
