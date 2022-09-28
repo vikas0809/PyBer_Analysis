@@ -58,6 +58,63 @@ Visualization is great way for anyone to easily understand the data and its tren
     # Read the City and Ride Data
     city_data_df = pd.read_csv(city_data_to_load)
     ride_data_df = pd.read_csv(ride_data_to_load)
+    
+ ### Merge DataFrames
+ 
+     # Combine the data into a single dataset
+      pyber_data_df = pd.merge(ride_data_df, city_data_df, how="left", on=["city", "city"])
+
+      # Display the data table for preview
+      pyber_data_df.head()
+      
+  ### Getting the Summary Dataframe
+  
+  To get the summary,we created individual summaries of differnt kind of data and merging them to create one       summary dataframe.
+  
+  1. Get the total rides for each city type.
+            
+            ride_count_bytype=pyber_data_df.groupby("type").count()["ride_id"]
+            ride_count_bytype.rename("Total Rides")
+
+  2. Get the total drivers for each city type.
+
+            driver_sum_bytype=city_data_df.groupby("type").sum()['driver_count']
+            driver_sum_bytype.rename("Total Drivers")
+            
+  3. Get the total amount of fares for each city type.
+
+            total_fare_bytype=pyber_data_df.groupby("type").sum()["fare"].round(2)
+            total_fare_bytype.rename("Total Fares")
+            
+  4. Get the average fare per ride for each city type.
+
+            avg_fare_bytype=pyber_data_df.groupby("type").mean()["fare"]
+            avg_fare_bytype.rename("Average Fare per Ride")
+            
+  5. Get the average fare per driver for each city type. 
+
+            a=total_fare_bytype/driver_sum_bytype
+            avg_fare_per_driver=a.to_frame(name="avg_fare_per_driver")
+            avg_fare_per_driver
+            
+  6. Create a PyBer summary DataFrame. 
+
+            # Combine the data into a single dataset
+            pyber_summary_df = pd.merge(pd.merge(pd.merge(pd.merge(ride_count_bytype,
+                                          driver_sum_bytype,on="type"),
+                                        total_fare_bytype,on="type"),
+                                        avg_fare_bytype,on="type"),
+                                          avg_fare_per_driver,on="type")
+            #Renaming the columns
+            pyber_summary_df=pyber_summary_df.rename(columns=
+                                                       {"ride_id":"Total Rides",
+                                                        "driver_count":"Total Drivers",
+                                                        "fare_x":"Total Fares",
+                                                        "fare_y":"Average Fare per Ride",
+                                                        "avg_fare_per_driver":"Average Fare per Driver"
+                                                       })
+            # Display the data table for preview
+            pyber_summary_df.head()
 
 
 
