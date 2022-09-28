@@ -26,7 +26,38 @@ We read the data from two different files and concluded into one data frame.
 
 ![](Analysis/image11.png)
 
+Visualization is great way for anyone to easily understand the data and its trends.
+- Busiest week for the city types is third week of Feburary.
+- There is sharp decline in revenue for all city types in last week of Feburary.
+- Revenue range for Urban: 1600-2500(USD)
+- Revenue range for Suburban: 600-1400(USD)
+- Revenue range for Rural: 0-500(USD)
+- The revenue increase for Urban cities is gradual with time.
 
+## Detailed Analysis
+
+### Using Magic methods
+      
+      # Add Matplotlib inline magic command
+      %matplotlib inline
+
+### Adding Dependencies
+    
+    # Dependencies and Setup
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    # Import the style from Matplotlib.
+    from matplotlib import style
+
+### Loading and Reading CSV files
+
+    # File to Load
+    city_data_to_load = 'Resources/city_data.csv'
+    ride_data_to_load = 'Resources/ride_data.csv'
+
+    # Read the City and Ride Data
+    city_data_df = pd.read_csv(city_data_to_load)
+    ride_data_df = pd.read_csv(ride_data_to_load)
 
 
 
