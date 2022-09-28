@@ -24,7 +24,7 @@ We read the data from two different files and concluded into one data frame.
 
 ### Line chart visualtization
 
-![](Analysis/image11.png)
+![](Analysis/PyBer_fare_summary.png)
 
 Visualization is great way for anyone to easily understand the data and its trends.
 - Busiest week for the city types is third week of Feburary.
@@ -168,5 +168,5 @@ This will explain steps to create line plot that shows the total weekly of the f
             # Use the graph style fivethirtyeight.
             style.use('fivethirtyeight')
 
-![](Analysis/image11.png)
+![](Analysis/PyBer_fare_summary.png)
 
