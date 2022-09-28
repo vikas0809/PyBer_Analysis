@@ -154,7 +154,7 @@ This will explain steps to create line plot that shows the total weekly of the f
 
             resampled_df=dated_fare_sum.resample('W').sum()
             
-### Plottting the line chart using Object Oriented interface method.
+### 8.Plottting the line chart using Object Oriented interface method.
 
             fig,ax=plt.subplots(figsize=(12, 5))
             resampled_df.plot(kind='line',ax=ax, linewidth=1)
@@ -170,4 +170,3 @@ This will explain steps to create line plot that shows the total weekly of the f
 
 ![](Analysis/image11.png)
 
-## Suggestions
