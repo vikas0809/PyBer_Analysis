@@ -115,6 +115,8 @@ Visualization is great way for anyone to easily understand the data and its tren
                                                        })
             # Display the data table for preview
             pyber_summary_df.head()
+            
+![](Resources/1.png)
 
 ## Detailed Analysis-Creating Line Plot.
 This will explain steps to create line plot that shows the total weekly of the fares for each type of city.We used groupby and sum to get data from our summary daframe.
@@ -165,5 +167,7 @@ This will explain steps to create line plot that shows the total weekly of the f
             fig.savefig('Analysis/image11.png',bbox_inches='tight',dpi=100)
             # Use the graph style fivethirtyeight.
             style.use('fivethirtyeight')
+
+![](Analysis/image11.png)
 
 ## Suggestions
