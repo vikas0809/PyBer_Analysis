@@ -34,7 +34,7 @@ Visualization is great way for anyone to easily understand the data and its tren
 - Revenue range for Rural: 0-500(USD)
 - The revenue increase for Urban cities is gradual with time.
 
-## Detailed Analysis
+## Detailed Analysis-Getting Sumamry DataFrame
 
 ### Using Magic methods
       
@@ -116,6 +116,54 @@ Visualization is great way for anyone to easily understand the data and its tren
             # Display the data table for preview
             pyber_summary_df.head()
 
+## Detailed Analysis-Creating Line Plot.
+This will explain steps to create line plot that shows the total weekly of the fares for each type of city.We used groupby and sum to get data from our summary daframe.
 
+### 1. Read the merged DataFrame
+            
+            # 1. Read the merged DataFrame
+            pyber_data_df.head()
+            
+### 2. Sum of fares by date and type
 
+            # 2. Using groupby() to create a new DataFrame showing the sum of the fares 
+            #  for each date where the indices are the city type and date.
+            fare_sum_bydate=pyber_data_df.groupby(['date','type']).sum()['fare']
+            fare_sum_bydate
+            
+### 3.Reset the index on the DataFrame
 
+            fare_sum_bydate = fare_sum_bydate.reset_index()
+            
+### 4.Creating pivot table with date as index.
+
+            fare_sum_bydate=fare_sum_bydate.pivot(index='date',columns='type',values='fare')
+            
+### 5. Filtering data for specific date range.
+
+            dated_fare_sum = fare_sum_bydate.loc['2019-01-01':'2019-04-29']
+            dated_fare_sum.tail()
+       
+### 6. Set the "date" index to datetime datatype.
+
+            dated_fare_sum.index = pd.to_datetime(dated_fare_sum.index)
+            
+### 7. Resample the data as sum of fare by weeks.
+
+            resampled_df=dated_fare_sum.resample('W').sum()
+            
+### Plottting the line chart using Object Oriented interface method.
+
+            fig,ax=plt.subplots(figsize=(12, 5))
+            resampled_df.plot(kind='line',ax=ax, linewidth=2)
+            fig.subplots_adjust(right=3)
+            ax.set_title('Total Fares by City Type',fontsize=16)
+            ax.set_ylabel('Fare($USD)',fontsize=14)
+            ax.xaxis.set_tick_params(labelsize=10)
+            ax.set_xlabel(" ")
+            fig.tight_layout()
+            fig.savefig('Analysis/image11.png',bbox_inches='tight',dpi=100)
+            # Use the graph style fivethirtyeight.
+            style.use('fivethirtyeight')
+
+## Suggestions
